@@ -39,17 +39,21 @@ class VideoProvider extends ChangeNotifier{
 
 
   Future<void> getVideoData() async {
+   loge(message: "GET DATA");
    try{
      NetworkManager.instance.dio.get(url).then((value) {
        if(value.statusCode == HttpStatus.ok){
          loge(message: value.data['items'][0]);
          for(int i = 0 ; i < 24 ; i++){
-           videoModelList?.add(VideoModel(value.data['items'][i]['id']['videoId'],
-               value.data['items'][i]['snippet']['title'],
-               value.data['items'][i]['snippet']['thumbnails']['default']['url']));
-           loge(message: value.data['items'][i]);
-           notifyListeners();
+           videoModel = VideoModel(id: value.data['items'][i]['id']['videoId'],
+               title: value.data['items'][i]['snippet']['title'],
+               imgUrl: value.data['items'][i]['snippet']['thumbnails']['default']['url']);
+           videoModelList?.add( videoModel! );
+
+           loge(message: videoModelList?[i].title);
          }
+         notifyListeners();
+         loge(tag: "videoMdelList",message: videoModelList?.length);
        }else {
          videoModelList = [];
          notifyListeners();

@@ -40,7 +40,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-
+  @override
+  void initState() {
+    // TODO: implement initState
+     context.read<VideoProvider>().getVideoData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: InkWell(
             onTap: () async {
-
-              await context.read<VideoProvider>().getVideoData();
-              Get.to(()=>HomeNavigator());
+              Get.to(()=>const HomeNavigator());
             },
             child: Container(
               color: Colors.blue,

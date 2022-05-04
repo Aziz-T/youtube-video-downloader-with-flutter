@@ -2,13 +2,17 @@
 import 'package:flutter/material.dart';
 
 class ShortItem extends StatelessWidget {
-  const ShortItem({Key? key}) : super(key: key);
+  final String? url;
+  final String? title;
+  final String? imageUrl;
+  const ShortItem({Key? key, this.url, this.title, this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 500,
       color: Colors.red,
+      child: imageUrl != null ? Image.network(imageUrl!):Icon(Icons.network_cell),
     );
   }
 }
