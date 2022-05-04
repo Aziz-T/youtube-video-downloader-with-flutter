@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shortviewer/pages/video_page/video_page.dart';
 
 class ShortItem extends StatelessWidget {
   final String? url;
@@ -9,10 +11,15 @@ class ShortItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 500,
-      color: Colors.red,
-      child: imageUrl != null ? Image.network(imageUrl!):Icon(Icons.network_cell),
+    return InkWell(
+      onTap: (){
+        Get.to(()=>VideoPage(url:'https://www.youtube.com/shorts/${url}'));
+      },
+      child: Container(
+        height: 300,
+        color: Colors.red,
+        child: imageUrl != null ? Image.network(imageUrl!,height: 300,fit: BoxFit.fill,):Icon(Icons.network_cell),
+      ),
     );
   }
 }

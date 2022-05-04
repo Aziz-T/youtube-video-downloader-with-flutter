@@ -21,12 +21,14 @@ class _ShortListPageState extends State<ShortListPage> {
         crossAxisCount: 2,
         crossAxisSpacing: 1,
         mainAxisSpacing: 1,
-        childAspectRatio: 0.7 ,
+        childAspectRatio: 1 ,
         // Generate 100 widgets that display their index in the List.
         children: List.generate(context.watch<VideoProvider>().videoModelList!=null ?
         context.watch<VideoProvider>().videoModelList!.length: 0 , (index) {
           return ShortItem(
             imageUrl: context.watch<VideoProvider>().videoModelList![index].imgUrl??"",
+            title: context.watch<VideoProvider>().videoModelList![index].title??"",
+            url: context.watch<VideoProvider>().videoModelList![index].id??"",
           );
         }),
       ),

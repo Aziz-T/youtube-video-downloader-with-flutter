@@ -16,9 +16,10 @@ class VideoProvider extends ChangeNotifier{
 
  static const String apiKey = "AIzaSyCqqV1dh0YSlhAMnXkKLHSfpzdEoJv1Dhg";
  static const String url = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=shorts&key="+apiKey;
+ static const String shortUrl = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&videoCategoryId=42&regionCode=US&key="+apiKey;
 
  VideoModel? videoModel;
-  List<VideoModel>? videoModelList;
+  List<VideoModel>? videoModelList = [];
 
  List<Widget> pages =[
    ShortListPage(),
