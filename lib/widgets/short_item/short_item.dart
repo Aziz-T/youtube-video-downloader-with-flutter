@@ -17,7 +17,7 @@ class ShortItem extends StatelessWidget {
       },
       child: Container(
         height: 300,
-        color: Colors.red,
+        color: Colors.grey.withOpacity(0.2),
         child: imageUrl != null ? Image.network(imageUrl!,height: 300,fit: BoxFit.fill,):Icon(Icons.network_cell),
       ),
     );

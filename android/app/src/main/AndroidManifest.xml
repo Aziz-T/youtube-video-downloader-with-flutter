@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tcorp.shortviewer">
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
    <application
         android:label="shortviewer"
         android:name="${applicationName}"

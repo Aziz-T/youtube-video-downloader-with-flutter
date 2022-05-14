@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const MyHomePage(),
+        home: const HomeNavigator(),
       ),
     );
   }
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     // TODO: implement initState
-     context.read<VideoProvider>().getVideoData();
+
     super.initState();
   }
 
@@ -58,15 +58,41 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
 
       body: Center(
-        child: InkWell(
+        child: buildPlayButton(context,
             onTap: () async {
               Get.to(()=>const HomeNavigator());
             },
-            child: Container(
-              color: Colors.blue,
-              height: 30,width: 40,)),
+           ),
       )
 
+    );
+  }
+  InkWell buildPlayButton(BuildContext context, {required VoidCallback onTap}) {
+    final _size = MediaQuery.of(context).size;
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: _size.width*0.5,
+        height: _size.width*0.2,
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Center(
+            child: Text(
+              "Watch",
+              style: TextStyle(fontSize: 25, color: Colors.white,fontWeight: FontWeight.bold),
+            )),
+      ),
     );
   }
 }

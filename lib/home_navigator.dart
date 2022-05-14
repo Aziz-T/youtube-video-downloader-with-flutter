@@ -23,18 +23,25 @@ class _HomeNavigatorState extends State<HomeNavigator> {
   // String url = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=shorts&key="+apiKey;
 
 
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<VideoProvider>().getVideoConst();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: context.watch<VideoProvider>().currentPage,
-      bottomNavigationBar: buildBottomNavyBar(context),
+      bottomNavigationBar: buildBottomNavBar(context),
     );
   }
 
   BottomNavyBar buildBottomNavyBar(BuildContext context) {
     return BottomNavyBar(
+
+      containerHeight: 60,
       selectedIndex: context.watch<VideoProvider>().selectedIndex,
       showElevation: true, // use this to remove appBar's elevation
       onItemSelected: (index) {
@@ -51,10 +58,38 @@ class _HomeNavigatorState extends State<HomeNavigator> {
           title: const Text(Strings.datePageTitle),
           activeColor: PalettePrimary.darkViolet,
         ),
-        BottomNavyBarItem(
-            icon: const Icon(Icons.settings),
-            title: const Text(Strings.settingsPageTitle),
-            activeColor: Colors.blue
+        // BottomNavyBarItem(
+        //     icon: const Icon(Icons.settings),
+        //     title: const Text(Strings.settingsPageTitle),
+        //     activeColor: Colors.blue
+        // ),
+      ],
+    );
+  }
+
+  Widget buildBottomNavBar(BuildContext context) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Color(0xFFEE0000),
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white.withOpacity(.60),
+      selectedFontSize: 14,
+      unselectedFontSize: 14,
+      currentIndex:  context.watch<VideoProvider>().selectedIndex,
+      elevation: 3,
+      onTap: (value) {
+        context.read<VideoProvider>().setPage(value);
+      },
+      items: [
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.list_alt),
+
+          label: Strings.homePageTitle,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.play_arrow_outlined),
+
+          label: Strings.datePageTitle,
         ),
       ],
     );
