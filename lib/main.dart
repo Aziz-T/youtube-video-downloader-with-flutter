@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
-import 'package:shortviewer/video_provider.dart';
-import 'home_navigator.dart';
+import 'package:shortviewer/pages/video_download_page/video_download_page.dart';
+import 'package:shortviewer/providers/video_provider.dart';
+import 'package:shortviewer/widgets/main_button/main_button.dart';
+import 'pages/home_navigator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,26 +22,27 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => VideoProvider()),
       ],
       child: GetMaterialApp(
-        title: 'Flutter Demo',
+        title: 'Short Video Viewer',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomeNavigator(),
+        home: const MyHomePage(),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, }) : super(key: key);
+  const MyHomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -49,50 +52,56 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final _size = MediaQuery.of(context).size;
     return Scaffold(
-
-      body: Center(
-        child: buildPlayButton(context,
+        body: SizedBox(
+      width: _size.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+              child: Image.asset(
+            "assets/ic_launcher.png",
+            height: _size.height * 0.3,
+          )),
+          buildPlayButton(
+            context,
             onTap: () async {
-              Get.to(()=>const HomeNavigator());
+              Get.to(() => const HomeNavigator());
             },
-           ),
-      )
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          buildDownloadButton(
+            context,
+            onTap: () async {
+              Get.to(() => const VideoDownloadPage());
+            },
+          ),
+        ],
+      ),
+    ));
+  }
 
+  Widget buildPlayButton(BuildContext context, {required VoidCallback onTap}) {
+    final _size = MediaQuery.of(context).size;
+    return MainButton(
+      width: _size.width * 0.6,
+      onTap: onTap,
+      color: Colors.red,
+      title: "Watch",
     );
   }
-  InkWell buildPlayButton(BuildContext context, {required VoidCallback onTap}) {
+
+  Widget buildDownloadButton(BuildContext context,
+      {required VoidCallback onTap}) {
     final _size = MediaQuery.of(context).size;
-    return InkWell(
+    return MainButton(
+      width: _size.width * 0.6,
       onTap: onTap,
-      child: Container(
-        width: _size.width*0.5,
-        height: _size.width*0.2,
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Center(
-            child: Text(
-              "Watch",
-              style: TextStyle(fontSize: 25, color: Colors.white,fontWeight: FontWeight.bold),
-            )),
-      ),
+      color: Colors.green,
+      title: "Download Video",
     );
   }
 }

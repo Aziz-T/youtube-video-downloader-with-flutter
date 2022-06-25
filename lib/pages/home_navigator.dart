@@ -4,11 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shortviewer/strings_const.dart';
-import 'package:shortviewer/video_provider.dart';
+import 'package:shortviewer/values/strings_const.dart';
+import 'package:shortviewer/providers/video_provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'colors.dart';
+import '../values/colors.dart';
 
 class HomeNavigator extends StatefulWidget {
   const HomeNavigator({Key? key}) : super(key: key);

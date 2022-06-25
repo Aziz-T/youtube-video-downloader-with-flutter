@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shortviewer/video_provider.dart';
+import 'package:shortviewer/providers/video_provider.dart';
 
 import '../../widgets/short_item/short_item.dart';
 
