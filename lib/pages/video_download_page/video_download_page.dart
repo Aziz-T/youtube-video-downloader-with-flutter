@@ -74,7 +74,6 @@ class _VideoDownloadPageState extends State<VideoDownloadPage> {
       ),
     );
   }
-
   MainButton buildDownloadMainButton(Size size) => MainButton(
         onTap: () {
           if (_key.currentState!.validate()) {

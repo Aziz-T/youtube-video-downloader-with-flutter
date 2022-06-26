@@ -1,15 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_youtube_downloader/flutter_youtube_downloader.dart';
 import 'package:shortviewer/core/network_manager.dart';
 import 'package:shortviewer/pages/main_pages/random_short_page.dart';
-import 'package:shortviewer/pages/main_pages/settings_page.dart';
 import 'package:shortviewer/pages/main_pages/short_list_page.dart';
 import 'package:shortviewer/core/public_functions.dart';
 import 'package:shortviewer/models/video_model.dart';
-import 'package:shortviewer/videos/videos_const.dart';
+import '../values/videos/videos_const.dart';
 
 class VideoProvider extends ChangeNotifier {
   static const String apiKey = "AIzaSyD7ptGo-2goXj2XOJ6nOF5WotPE_H_dpw8";
@@ -110,7 +108,7 @@ class VideoProvider extends ChangeNotifier {
   Future<void> getVideoData() async {
     loge(message: "GET DATA");
     try {
-      NetworkManager.instance.dio.get(url).then((value) {
+     await NetworkManager.instance.dio.get(url).then((value) {
         if (value.statusCode == HttpStatus.ok) {
           loge(message: value.data['items'][0]);
           for (int i = 0; i < 24; i++) {
