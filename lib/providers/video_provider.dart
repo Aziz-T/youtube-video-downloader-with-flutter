@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_youtube_downloader/flutter_youtube_downloader.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shortviewer/core/network_manager.dart';
 import 'package:shortviewer/pages/main_pages/random_short_page.dart';
 import 'package:shortviewer/pages/main_pages/short_list_page.dart';
@@ -104,6 +106,12 @@ class VideoProvider extends ChangeNotifier {
     }
   }
 
+
+  Future<void> permissionHandle()async {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.storage,
+    ].request();
+  }
 
   Future<void> getVideoData() async {
     loge(message: "GET DATA");

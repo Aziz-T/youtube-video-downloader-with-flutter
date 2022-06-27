@@ -40,7 +40,8 @@ dependencies:
   dio: ^4.0.6
   bottom_navy_bar: ^6.0.0
   flutter_youtube_downloader: ^0.0.5
-
+  permission_handler: ^10.0.0
+  fluttertoast: ^8.0.9
 dev_dependencies:
   flutter_test:
     sdk: flutter

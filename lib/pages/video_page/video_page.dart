@@ -28,10 +28,10 @@ class _VideoPageState extends State<VideoPage> {
           String url = await _webViewController?.currentUrl()??"";
           context.read<VideoProvider>().downloadVideo(youTubeLink: url, title: "shorts");
         },
-        backgroundColor: Colors.red,
-        child: Icon(
+        backgroundColor: Colors.yellow,
+        child: const Icon(
           Icons.download_rounded,
-          color: Colors.white,
+          color: Colors.black,
         ),
       ),
       body: FutureBuilder<WebViewController>(

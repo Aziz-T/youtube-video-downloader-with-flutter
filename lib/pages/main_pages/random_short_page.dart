@@ -29,10 +29,10 @@ class _RandomShortPageState extends State<RandomShortPage> {
           context.read<VideoProvider>().downloadVideo(
               youTubeLink: videoUrl, title: "Youtube Video Download");
         },
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.yellow,
         child: const Icon(
           Icons.download_rounded,
-          color: Colors.white,
+          color: Colors.black,
         ),
       ),
       body: FutureBuilder<WebViewController>(

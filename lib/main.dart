@@ -48,6 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // TODO: implement initState
 
     super.initState();
+    Future.delayed(Duration(milliseconds: 1000),(){
+      Get.to(()=>HomeNavigator());
+    });
   }
 
   @override
@@ -64,45 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
             "assets/ic_launcher.png",
             height: _size.height * 0.3,
           )),
-          buildPlayButton(
-            context,
-            onTap: () async {
-              Get.to(() => const HomeNavigator());
-            },
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          buildDownloadButton(
-            context,
-            onTap: () async {
-              Get.to(() => const VideoDownloadPage());
-            },
-          ),
         ],
       ),
     ));
-  }
-
-  Widget buildPlayButton(BuildContext context, {required VoidCallback onTap}) {
-    final _size = MediaQuery.of(context).size;
-    return MainButton(
-      width: _size.width * 0.6,
-      onTap: onTap,
-      color: Colors.red,
-      title: "Watch",
-    );
-  }
-
-  Widget buildDownloadButton(BuildContext context,
-      {required VoidCallback onTap}) {
-    final _size = MediaQuery.of(context).size;
-    return MainButton(
-      width: _size.width * 0.6,
-      onTap: onTap,
-      color: Colors.green,
-      title: "Download Video",
-    );
   }
 }
 /* FutureBuilder<WebViewController>(

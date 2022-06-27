@@ -28,6 +28,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
     // TODO: implement initState
     super.initState();
     context.read<VideoProvider>().getVideoConst();
+    context.read<VideoProvider>().permissionHandle();
   }
 
   @override
